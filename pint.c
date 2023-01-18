@@ -3,7 +3,7 @@
 /**
  * m_pint - prints value on top of 'stack', or exit if stuck is empty
  * @stack: double pointer to the head of stack
- * @line_number - line of current operation
+ * @line_number: line of current operation
  *
  * Return: void
  */
