@@ -9,6 +9,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -27,7 +28,7 @@ typedef struct stack_s
 } stack_t;
 
 /**
- * struct instructions_s - opcode and its function
+ * struct instruction_s - opcode and its function
  * @opcode: the opcode
  * @f: function to handle the opcode
  *
@@ -41,7 +42,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
- * struct bus_s - variables -args, file, line content
+ * struct bus_s - variables args, file, line content
  * @arg: value
  * @file: pointer to monty file
  * @content: line content
@@ -76,7 +77,7 @@ void f_mul(stack_t **head, unsigned int counter);
 void f_mod(stack_t **head, unsigned int counter);
 void f_pstr(stack_t **head, unsigned int counter);
 void f_pchar(stack_t **head, unsigned int counter);
-void f_rotl(stack_t **head, unsigned int counter);
+void f_rotl(stack_t **head, __attribute__((unused)) unsigned int counter);
 void f_rotr(stack_t **head, __attribute__((unused)) unsigned int counter);
 void addnode(stack_t **head, int n);
 void addqueue(stack_t **head, int n);
