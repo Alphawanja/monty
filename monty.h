@@ -9,7 +9,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
-extern int num;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -41,28 +40,47 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void pushS(stack_t **s_stack, unsigned int lin);
-void printS(stack_t **s_stack, unsigned int lin);
-void pintS(stack_t **s_stack, unsigned int lin);
-void popS(stack_t **s_stack, unsigned int lin);
-void swapS(stack_t **s_stack, unsigned int lin);
-void adds(stack_t **s_stack, unsigned int lin);
-void nopS(stack_t **s_stack, unsigned int lin);
-void subS(stack_t **s_stack, unsigned int lin);
-void divS(stack_t **s_stack, unsigned int lin);
-void mulS(stack_t **s_stack, unsigned int lin);
-void modS(stack_t **s_stack, unsigned int lin);
-void comS(stack_t **s_stack, unsigned int lin);
-void pcharS(stack_t **s_stack, unsigned int lin);
+/**
+ * struct bus_s - variables -args, file, line content
+ * @arg: value
+ * @file: pointer to monty file
+ * @content: line content
+ * @lifi: flag change stack <-> queue
+ *
+ * Description: carries value through program
+ */
+typedef struct bus_s
+{
+	char *arg;
+	FILE *file;
+	char *content;
+	int lifi;
+} bus_t;
+extern bus_t bus;
 
-void inter_monty(char **av);
-void token_line(char **buffer, char ***tokens, ssize_t r_line);
-void opcode_choose(stack_t **s_stack, char ***tokens, unsigned int lin);
-void freetokens(char ***tokens);
-void freest_stack(stack_t *s_stack);
-void deletenl(char **buffer);
-void tokenizer(char **buffer, char ***tokens);
-void checknumber(char *n, unsigned int line_number);
-void (*choose_opcode(char *code))(stack_t **s_stack, unsigned int lin);
+char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
+ssize_t getstdin(char *lineptr, int file);
+char *clean_line(char *content);
+void f_push(stack_t **head, unsigned int number);
+void f_print(stack_t **head, unsigned int number);
+void f_pint(stack_t **head, unsigned int number);
+int execute(char *content, stack_t **stack, unsigned int counter, FILE *file);
+void free_stack(stack_t *head);
+void f_pop(stack_t **head, unsigned int counter);
+void f_swap(stack_t **head, unsigned int counter);
+void f_add(stack_t **head, unsigned int counter);
+void f_nop(stack_t **head, unsigned int counter);
+void f_sub(stack_t **head, unsigned int counter);
+void f_div(stack_t **head, unsigned int counter);
+void f_mul(stack_t **head, unsigned int counter);
+void f_mod(stack_t **head, unsigned int counter);
+void f_pstr(stack_t **head, unsigned int counter);
+void f_pchar(stack_t **head, unsigned int counter);
+void f_rotl(stack_t **head, unsigned int counter);
+void f_rotr(stack_t **head, __attribute__((unused)) unsigned int counter);
+void addnode(stack_t **head, int n);
+void addqueue(stack_t **head, int n);
+void f_queue(stack_t **head, unsigned int counter);
+void f_stack(stack_t **head, unsigned int counter);
 
 #endif
